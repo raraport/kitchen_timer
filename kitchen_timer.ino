@@ -4,7 +4,7 @@ uint32_t perSecond = 0;
 boolean Abtnpressed = M5.BtnA.isPressed(), Bbtnpressed = M5.BtnB.isPressed(), Cbtnpressed = M5.BtnC.isPressed();
 boolean stopping = true, beeping = false;
 
-byte Maxmm =99, Maxss=59;
+byte omm =100, o=100;
 byte mm =0, ss =0;
 
 void setup() {
@@ -104,11 +104,20 @@ void loop() {
           }
         }
       }
+      omm = mm;
       mm--;
       ss =59;
       draw_minutes(mm);
       draw_seconds(ss);
      }
+       if(omm !=mm){
+        omm = mm;
+        draw_minutes(mm);
+       }
+
+       if(oss !=ss){
+        oss =ss;
+        
        // インジケーターの点滅
         if (ss % 2 && !hasStop) {
           M5.Lcd.setCursor( 150, 40);
@@ -120,6 +129,10 @@ void loop() {
           M5.Lcd.setCursor( 150, 40);
           M5.Lcd.print(":");
         }
+
+        draw_seconds(ss);
+       }
+
     }
   }
 } 
